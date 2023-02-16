@@ -17,50 +17,26 @@ const ProfileEdit = () => {
           </h4>
           <p>* = required field</p>
           <form className="w-full py-4">
-            <Select
-              className="w-full py-2 scale-y-125"
-              showSearch
+            <select
+              // defaultValue={disabledValue}
+              onChange={handleStatus}
+              className="w-full py-2 border-2 rounded"
+              name="status"
+              required
               id="selectDegree"
-              // style={{
-              //   height: 00,
-              // }}
-              placeholder="*Select Professional Status"
-              optionFilterProp="children"
-              filterOption={(input, option) =>
-                (option?.label ?? "").includes(input)
-              }
-              filterSort={(optionA, optionB) =>
-                (optionA?.label ?? "")
-                  .toLowerCase()
-                  .localeCompare((optionB?.label ?? "").toLowerCase())
-              }
-              options={[
-                {
-                  value: "1",
-                  label: "Not Identified",
-                },
-                {
-                  value: "2",
-                  label: "Closed",
-                },
-                {
-                  value: "3",
-                  label: "Communicated",
-                },
-                {
-                  value: "4",
-                  label: "Identified",
-                },
-                {
-                  value: "5",
-                  label: "Resolved",
-                },
-                {
-                  value: "6",
-                  label: "Cancelled",
-                },
-              ]}
-            />
+            >
+              <option value={disabledValue}>*Select Professional Status</option>
+              <option value="Developer">Developer</option>
+              <option value="Junior Developer">Junior Developer</option>
+              <option value="Senior Developer">Senior Developer</option>
+              <option value="Manager">Manager</option>
+              <option value="Student or Learning">Student or Learning</option>
+              <option value="Instructor or teacher">
+                Instructor or teacher
+              </option>
+              <option value="Intern">Intern</option>
+              <option value="Other">Other</option>
+            </select>
             <label htmlFor="selectDegree" className="text-gray-500">
               Give us an idea of where you are at in your career
             </label>

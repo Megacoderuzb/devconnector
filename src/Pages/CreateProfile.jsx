@@ -37,7 +37,6 @@ const CreateProfile = () => {
   });
 
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
 
   useEffect(() => {
     let token = localStorage.getItem("token");
@@ -56,12 +55,6 @@ const CreateProfile = () => {
       [e.target.name]: e.target.value,
     }));
   }
-  // function handleUser() {
-  //   setValues((oldValues) => ({
-  //     ...oldValues,
-  //     user: localStorage.getItem("token"),
-  //   }));
-  // }
 
   function handleSocial(e) {
     setValues((ov) => ({
@@ -72,32 +65,31 @@ const CreateProfile = () => {
   const [disabledValue, setDisValue] = useState({
     optionV: "",
   });
-  let token = localStorage.getItem("token");
-
-  async function handleCompleteProfile(e) {
+  // let token = localStorage.getItem("token");
+  async function authe() {
+    let { data } = axios.get("api/auth");
+    console.log(data);
+  }
+  authe();
+  function handleCompleteProfile(e) {
     e.preventDefault();
 
     if (values.status === "") {
       return toast("Pleace fill out required fileds", { type: "info" });
     }
     try {
-      let { data } = await axios.post("api/profile", values);
-      axios.defaults.headers.common["x-auth-token"] = `Bearer ${token}`;
-      // setValues((ov) => ({
-      //   ...ov,
-      //   user: data?.user._id,
-      // }));
+      let { data } = axios.post("api/profile", values);
+      // axios.defaults.headers.common["x-auth-token"] = `Bearer ${token}`;
 
-      console.log(data);
+      // console.log(data, "data");
 
-      console.log(values);
+      // console.log(values);
 
-      // dispatch(updateMarketInfo(data.market));
-      console.log(data);
+      // console.log(data);
 
       toast("Successfully Completed", { type: "success" });
 
-      navigate("/profile");
+      // navigate("/das`");
     } catch (error) {
       toast(error.mesage, { type: "error" });
     }
